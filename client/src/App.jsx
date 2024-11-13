@@ -1,3 +1,24 @@
+// *********************************************** //
+// Дата релиза: 15.11.24
+// *********************************************** //
+
+// *********************************************** //
+// Для связи: 
+// tg: @dev_bduidan
+// email: support@project.bduidan.ru, me@bduidan.ru
+// *********************************************** //
+
+// *********************************************** //
+// Проект полностью готов тут: -> https://justcats.bduidan.ru <-
+// *********************************************** //
+// Это простая публичная серверная часть БЕЗ логики с бд
+// Это уже будет на http://api.bduidan.ru:3100
+// *********************************************** //
+
+
+
+
+
 import { useState, useEffect } from 'react'
 import './App.css'
 
@@ -8,12 +29,25 @@ function App() {
   const [catImage, setCatImage] = useState('');
   const [caterror, setCatError] = useState('');
   const [CAt, setCAt] = useState('');
-  const [CATStyle, setCATStyle] = useState("none")
-  const [cATDecor, setcATDecor] = useState('')
-  const [cATMax, setcATMax] = useState('')
+  const [CATStyle, setCATStyle] = useState("none");
+  const [CATStyle2, setCATStyle2] = useState("block");
+  const [cATDecor, setcATDecor] = useState('');
+  const [cATMax, setcATMax] = useState('');
+  const origin = new URL(document.URL).origin + '/';
+  const url = document.URL;
 
   useEffect(() => {
-    cATURL()
+    cATURL();
+
+    console.log(origin, url)
+    // *********************************************** //
+
+    // Тут код дебагинга
+
+    // if (origin == url) {
+    //   console.log('heeeelo')
+    // }
+    // *********************************************** //
   }, []);
 
   const cATURL = () => {
@@ -34,9 +68,9 @@ function App() {
 
   const cATBackOnClick = () => {
     if (cAT < 1) {
-      window.location.href = `${new URL(document.URL).origin}?id=${cATMax}`;
+      window.location.href = `${origin}?id=${cATMax}`;
     } else if (cAT !== 1) {
-      window.location.href = `${new URL(document.URL).origin}?id=${cAT - 1}`;
+      window.location.href = `${origin}?id=${cAT - 1}`;
     } else {
     }
   }
@@ -53,9 +87,9 @@ function App() {
 
   const cATNextOnClick = () => {
     if (cAT > cATMax) {
-      window.location.href = `${new URL(document.URL).origin}?id=${cATMax}`;
+      window.location.href = `${origin}?id=${cATMax}`;
     } else if (cAT !== cATMax) {
-      window.location.href = `${new URL(document.URL).origin}?id=${cAT + 1}`;
+      window.location.href = `${origin}?id=${cAT + 1}`;
     } else {
     }
   }
@@ -97,21 +131,37 @@ function App() {
     }
   };
 
-  // const cATURLImage = (cAT) => {
-  //   cATURLImage = `http://localhost:3000/imagesCats?id=${cAT}`;
-
-  // };
+  // *********************************************** //
+  // Тут был код, который я удалил..
+  // *********************************************** //
 
   useEffect(() => {
     if (cAT) {
       cATURLInfo(cAT);
       setCATStyle('none');
+
+      // *********************************************** //
+      // TODO Пофиксить баг
+
+      // if (cAT > cATMax) {
+      //   console.debug(cAT, cATMax)
+      //   setCATStyle("block");
+      //   setCATStyle2("none")
+      // }
+
       // cATURLImage(cAT)
+      // *********************************************** //
+
     } else {
-      setCATStyle("block")
-      cATURLError()
+
     }
+    console.log(cAT)
+
+
   }, [cAT]);
+
+  useEffect(() => {
+  })
 
   return (
     <>
@@ -122,7 +172,7 @@ function App() {
         <div className="catimg">
           <img src={`http://localhost:3000/imagesCats?id=${cAT}`} alt="" />
         </div>
-        <div className="catinfo">
+        <div style={{ display: CATStyle2 }} className="catinfo">
           <h1>{CaT}</h1>
           <p>
             {CAt}
@@ -143,6 +193,22 @@ function App() {
             {cATNext()}
           </button>
         </div>
+
+        {/* *********************************************** */}
+        {/* Тут часть релиза */}
+
+        {/* Проект полностью готов тут: https://justcats.bduidan.ru */}
+
+        {/* <div>
+          <h1>
+            Just Cats
+          </h1>
+          <p>
+            Just cats - социальная сеть для котиков, на которой есть котики ( и по пользовательскому соглашению) ВЫ должны являться котиком, или котоподобным юзером интернета. 
+          </p>
+        </div> */}
+
+        {/* *********************************************** */}
       </div>
     </>
   )
