@@ -170,7 +170,7 @@ function App() {
       </div>
       <div>
         <div className="catimg">
-          <img src={`http://localhost:3000/imagesCats?id=${cAT}`} alt="" />
+          <img src={`http://localhost:3000/imagesCats?id=${cAT}`} alt="" style={{ width: '200px', borderRadius: '20%' }}/>
         </div>
         <div style={{ display: CATStyle2 }} className="catinfo">
           <h1>{CaT}</h1>
